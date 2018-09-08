@@ -1,136 +1,97 @@
 // CryptoMe ABI
 const abi = [{
-    "constant": true,
-    "inputs": [{
-        "name": "name",
-        "type": "string"
-      },
-      {
-        "name": "offset",
-        "type": "uint256"
-      }
-    ],
-    "name": "getConnection",
-    "outputs": [{
-      "name": "connection",
-      "type": "string"
-    }],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [{
-        "name": "name",
-        "type": "string"
-      },
-      {
-        "name": "offset",
-        "type": "uint256"
-      }
-    ],
-    "name": "getAlias",
-    "outputs": [{
-      "name": "alias",
-      "type": "string"
-    }],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [{
-      "name": "name",
-      "type": "string"
-    }],
-    "name": "get",
-    "outputs": [{
-        "name": "primary",
-        "type": "string"
-      },
-      {
-        "name": "addr",
-        "type": "string"
-      },
-      {
-        "name": "email",
-        "type": "string"
-      },
-      {
-        "name": "ipfs",
-        "type": "string"
-      },
-      {
-        "name": "aliasCount",
-        "type": "uint256"
-      },
-      {
-        "name": "connectionCount",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [{
-      "name": "connection",
-      "type": "string"
-    }],
-    "name": "addConnection",
-    "outputs": [{
-      "name": "",
-      "type": "bool"
-    }],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [{
-      "name": "name",
-      "type": "string"
-    }],
-    "name": "register",
-    "outputs": [{
-      "name": "",
-      "type": "bool"
-    }],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [{
-        "name": "email",
-        "type": "string"
-      },
-      {
-        "name": "ipfs",
-        "type": "string"
-      }
-    ],
-    "name": "update",
-    "outputs": [{
-      "name": "",
-      "type": "bool"
-    }],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  }
+		"constant": false,
+		"inputs": [
+			{
+				"name": "target",
+				"type": "uint256"
+			}
+		],
+		"name": "bump",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "hash",
+				"type": "string"
+			},
+			{
+				"name": "description",
+				"type": "string"
+			}
+		],
+		"name": "insert",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "target",
+				"type": "uint256"
+			}
+		],
+		"name": "stomp",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "publisher",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "hash",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "description",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "count",
+				"type": "uint256"
+			}
+		],
+		"name": "DiscoMsg",
+		"type": "event"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "discoData",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
 ]
 
 console.log("this is strange");
@@ -160,57 +121,21 @@ if (!web3.eth.defaultAccount) {
     console.log("balance is " + balance);
 
     if (balance === 0) {
-      $("#msg").html("Looks like you could use some Ropsten ETH. Try this <a style='color:#17b06b' href='http://faucet.ropsten.be:3001/'>faucet</a>.");
+      $("#msg").html("Looks like you could use some ETH.");
     }
   })
 }
 
-
-
-//const address = '0xd82429B0126535Ff0B8453EBA606334DE2F79836'; // first attempt, broken
-//const address = '0x9abfc27a2d79af78e0a5479d58cab6377612baba'; // maybe working ropsten
-//const address = '0x27546af163172b9c903ef6bfe66e99ca0db12f46'; // maybe working ropsten
-const address = '0xf703fabe3c100c6a94c268eaf3caa4f5fc0c3fec'; // M1 v2 ropsten
-
+const address = '0x1ca0eb599d249e1930bd6de0a55e39adc1c132b5'; // yay mainnet
 
 //alert('come on now');
 
 // creation of contract object
-var CryptoMe = web3.eth.contract(abi);
+var DiscoBall = web3.eth.contract(abi);
 
 // initiate contract for an address
-var cryptoMe = CryptoMe.at(address);
-console.log(cryptoMe);
-
-// check the anchor to see if we have something to search for
-if (location.hash) {
-  $("#search").val(location.hash.substr(1));
-  search();
-} else {
-  // see if this person has registered
-  var result = cryptoMe.get(web3.eth.defaultAccount.substr(2), function(err, res) {
-    if (err) {
-      console.log(err);
-      return;
-    }
-
-    console.log("BOOM")
-    console.log(res);
-
-    if (res[0] === "") {
-      if ($("msg").val() === '')
-        $("#msg").text("You have not registered any identities, register now!");
-    } else {
-      $("#msg").text("Welome back!");
-      location.hash = $("#search").val();
-    }
-
-    $("#name").text(res[0]);
-    $("#addr").text(res[1]);
-    $("#email").text(res[2]);
-    $("#ipfs").text(res[3]);
-  });
-}
+var discoBall = DiscoBall.at(address);
+console.log(discoBall);
 
 function search() {
   console.log("search.. " + $("#search").val());

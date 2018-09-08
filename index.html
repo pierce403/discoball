@@ -1,0 +1,163 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>crypto.me</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+<link rel='stylesheet' href='//cdn.jsdelivr.net/font-hack/2.020/css/hack.min.css'>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap4-neon-glow.css">
+
+  </head>
+  <body>
+    
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+    data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false"
+    aria-label="Toggle navigation" style="">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="/">crypto.me</a>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="#!">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#!">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#!">Disabled</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" _lpchecked="1">
+      <input id="search" class="form-control mr-sm-2 border-secondary" type="text" placeholder="search" oninput="window.search();">
+    </form>
+  </div>
+</nav>
+  
+  <div class="container">
+    <div class="py-5">
+      <h1>discoball.io</h1>
+      <p>
+        IPFS is Cool<br>
+        <span id="netwarn"></span>
+        <noscript><br><br><b>Sorry, you're going to need javascript for this.</b></noscript>
+      </p>
+      
+      <br><p id="msg"></p><br>
+      
+      <span class="fa fa-user-circle"></span> <span id="name"></span><br>
+      <span class="fa fa-key"></span> <span id="addr"></span><br>
+      <span class="fa fa-envelope"></span> <span id="email"></span><br>
+      <span class="fa fa-cube"></span> <span id="ipfs"></span><br>
+
+      <br><br>
+
+      <button class="btn btn-outline-secondary" data-toggle="modal" data-target=".bd-reg-modal-lg">New Identity</button>
+      <button class="btn btn-outline-secondary" data-toggle="modal" data-target=".bd-update-modal-lg">Update Identity</button>
+      
+    </div>
+  </div>
+
+
+<!-- registration modal -->
+<div class="modal fade bd-reg-modal-lg" id="reg-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLiveLabel">Register New Identity</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+<div class="input-group">
+  <div class="input-group-prepend">
+    <button class="btn btn-outline-secondary" type="button"><span class="fa fa-user-circle"></span></button>
+  </div>
+  <input type="text" class="form-control border-secondary" id="newname" placeholder="username">
+</div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-secondary" data-dismiss="modal">close</button>
+        <button class="btn btn-outline-secondary" onclick="register()">register</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- update modal -->
+<div class="modal fade bd-update-modal-lg" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLiveLabel">Update Identity</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+<div class="input-group">
+  <div class="input-group-prepend">
+    <button class="btn btn-outline-secondary" type="button"><span class="fa fa-envelope"></span></button>
+  </div>
+  <input type="text" class="form-control" aria-label="" id="updatedemail" placeholder="email" aria-describedby="basic-addon1">
+</div>
+
+<div class="input-group">
+  <div class="input-group-prepend">
+    <button class="btn btn-outline-secondary" type="button"><span class="fa fa-cube"></span></button>
+  </div>
+  <input type="text" class="form-control" aria-label="" id="updatedipfs" placeholder="ipfs" aria-describedby="basic-addon1">
+</div>
+
+
+<div class="input-group">
+  <div class="input-group-prepend">
+    <button class="btn btn-outline-secondary" type="button"><span class="fa fa-twitter"></span></button>
+  </div>
+  <input type="text" class="form-control" aria-label="" placeholder="XXXXXXXXXX" aria-describedby="basic-addon1">
+</div>
+
+<div class="input-group">
+  <div class="input-group-prepend">
+    <button class="btn btn-outline-secondary" type="button"><span class="fa fa-github"></span></button>
+  </div>
+  <input type="text" class="form-control" aria-label="" placeholder="XXXXXXXXXX" aria-describedby="basic-addon1">
+</div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-secondary" data-dismiss="modal">close</button>
+        <button class="btn btn-outline-secondary" onclick="update()">update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- requires jquery -->
+    <script src="discoball.js"></script>
+
+
+  </body>
+</html>

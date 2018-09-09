@@ -315,7 +315,7 @@ discoBall.discoData(function (err, result) {
 	    
 	    discoData.publishers(x,function(err,res){
 		    console.log(x+": "+res);
-		    if(res=="")return;
+		    if(res=="0x0000000000000000000000000000000000000000")return;
 		    discoTable.rows[x].cells[3].innerText=res;
 	    });	    
     }

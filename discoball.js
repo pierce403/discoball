@@ -304,19 +304,19 @@ discoBall.discoData(function (err, result) {
 	    discoData.hashes(x,function(err,res){
 		    console.log(x+": "+res);
 		    if(res=="")return;
-		    discoTable.rows[x].cells[1].innerText=res;
+		    discoTable.rows[x+1].cells[1].innerText=res;
 	    });
 	    
 	    discoData.descriptions(x,function(err,res){
 		    console.log(x+": "+res);
 		    if(res=="")return;
-		    discoTable.rows[x].cells[2].innerText=res;
+		    discoTable.rows[x+1].cells[2].innerText=res;
 	    });
 	    
 	    discoData.publishers(x,function(err,res){
 		    console.log(x+": "+res);
 		    if(res=="0x0000000000000000000000000000000000000000")return;
-		    discoTable.rows[x].cells[3].innerText=res;
+		    discoTable.rows[x+1].cells[3].innerText=res;
 	    });	    
     }
   });

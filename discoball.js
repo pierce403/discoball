@@ -1,5 +1,5 @@
-// CryptoMe ABI
-const abi = [{
+// DiscoBall ABI
+const discoBallABI = [{
 		"constant": false,
 		"inputs": [
 			{
@@ -94,6 +94,156 @@ const abi = [{
 	}
 ]
 
+const discoDataABI=[
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "count",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "hash",
+				"type": "string"
+			},
+			{
+				"name": "description",
+				"type": "string"
+			}
+		],
+		"name": "insert",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "scores",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "target",
+				"type": "uint256"
+			}
+		],
+		"name": "stomp",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "hashes",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "target",
+				"type": "uint256"
+			}
+		],
+		"name": "bump",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "descriptions",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "publishers",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	}
+]
+
 console.log("this is strange");
 
 try {
@@ -131,11 +281,27 @@ const address = '0x1ca0eb599d249e1930bd6de0a55e39adc1c132b5'; // yay mainnet
 //alert('come on now');
 
 // creation of contract object
-var DiscoBall = web3.eth.contract(abi);
+var DiscoBall = web3.eth.contract(discoBallABI);
+var DiscoData = web3.eth.contract(discoDataABI);
 
 // initiate contract for an address
 var discoBall = DiscoBall.at(address);
+var discoData;
 console.log(discoBall);
+
+discoBall.discoData(function (err, result) {
+  console.log(err, result);
+  discoData = DiscoData.at(address);
+	
+  discoData.count(function (err, result){
+    var count = result;
+    for(var x=0;x<count;++x)
+    {
+	    console.log("BOOM");
+	    //console.log(discoData.hashes())
+    }
+  });
+});
 
 function search() {
   console.log("search.. " + $("#search").val());

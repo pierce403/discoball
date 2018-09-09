@@ -287,13 +287,14 @@ var DiscoData = web3.eth.contract(discoDataABI);
 // initiate contract for an address
 var discoBall = DiscoBall.at(address);
 var discoData;
-console.log(discoBall);
+console.log("discoBall is "+discoBall);
 
 discoBall.discoData(function (err, result) {
   console.log(err, result);
   discoData = DiscoData.at(address);
-	
+  console.log("discoData is "+discoData)
   discoData.count(function (err, result){
+    console.log("count is "+result);
     var count = result;
     for(var x=0;x<count;++x)
     {

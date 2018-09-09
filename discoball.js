@@ -298,8 +298,9 @@ discoBall.discoData(function (err, result) {
     var count = result;
     for(var x=0;x<count;++x)
     {
-	    console.log("BOOM");
-	    //console.log(discoData.hashes())
+	    console.log(x)
+	    console.log(discoData.hashes(x));
+	    console.log(discoData.descriptions(x));
     }
   });
 });

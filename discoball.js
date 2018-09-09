@@ -300,7 +300,7 @@ discoBall.discoData(function (err, result) {
     let count = result;
     for(let x=0;x<count;++x)
     {
-	    let row=discoData.insertRow(-1);
+	    let row=discoTable.insertRow(-1);
 	    row.insertCell().innerText=x;
 	    row.insertCell().innerText="";
 	    row.insertCell().innerText="";

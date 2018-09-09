@@ -254,13 +254,13 @@ try {
 }
 
 web3.version.getNetwork((err, netId) => {
-  if (netId != 3) {
-    $("#netwarn").html("Please switch MetaMask to the <b>Ropsten</b> network.")
+  if (netId != 1) {
+    $("#netwarn").html("Please switch MetaMask to the <b>MainNet</b> network.")
   }
 })
 
 if (!web3.eth.defaultAccount) {
-  $("#msg").html("Please unlock MetaMask");
+  //$("#msg").html("Please unlock MetaMask");
 } else {
   web3.eth.getBalance(web3.eth.defaultAccount, function(error, result) {
     console.log(result)

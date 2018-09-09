@@ -300,7 +300,7 @@ discoBall.discoData(function (err, result) {
     {
 	    console.log(x)
 	    discoData.hashes(x,function(err,res){
-		    console.log(res);
+		    console.log(x+": "+res);
 	    });
 			     
 	    

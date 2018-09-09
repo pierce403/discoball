@@ -23,7 +23,7 @@
     aria-label="Toggle navigation" style="">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="/">discoball.ioe</a>
+  <a class="navbar-brand" href="/">discoball.io</a>
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-md-0">
@@ -65,14 +65,14 @@
 <div class="input-group w-50">
     <input class="form-control" id="inlineFormInputGroup" name="hash" placeholder="IPFS hash" required="" size="46" type="text" value="">
     <input class="form-control" id="inlineFormInputGroup" name="description" placeholder="description" required="" size="32" type="text" value="">
-    <button type="submit" class="btn btn-outline-secondary fa fa-qube"></button>
+    <button type="submit" class="btn btn-outline-secondary fa fa-cube"></button>
   </div>
+
 
 
       <br><br>
 
-      <button class="btn btn-outline-secondary" data-toggle="modal" data-target=".bd-reg-modal-lg">New Identity</button>
-      <button class="btn btn-outline-secondary" data-toggle="modal" data-target=".bd-update-modal-lg">Update Identity</button>
+      <button class="btn btn-outline-secondary" data-toggle="modal" data-target=".bd-update-modal-lg">New Hash</button>
       
     </div>
   </div>
@@ -111,7 +111,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLiveLabel">Update Identity</h5>
+        <h5 class="modal-title" id="exampleModalLiveLabel">New File</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -120,31 +120,16 @@
 
 <div class="input-group">
   <div class="input-group-prepend">
-    <button class="btn btn-outline-secondary" type="button"><span class="fa fa-envelope"></span></button>
-  </div>
-  <input type="text" class="form-control" aria-label="" id="updatedemail" placeholder="email" aria-describedby="basic-addon1">
-</div>
-
-<div class="input-group">
-  <div class="input-group-prepend">
     <button class="btn btn-outline-secondary" type="button"><span class="fa fa-cube"></span></button>
   </div>
-  <input type="text" class="form-control" aria-label="" id="updatedipfs" placeholder="ipfs" aria-describedby="basic-addon1">
+  <input type="text" class="form-control" aria-label="" id="ipfshash" placeholder="IPFS hash" aria-describedby="basic-addon1">
 </div>
-
 
 <div class="input-group">
   <div class="input-group-prepend">
     <button class="btn btn-outline-secondary" type="button"><span class="fa fa-twitter"></span></button>
   </div>
-  <input type="text" class="form-control" aria-label="" placeholder="XXXXXXXXXX" aria-describedby="basic-addon1">
-</div>
-
-<div class="input-group">
-  <div class="input-group-prepend">
-    <button class="btn btn-outline-secondary" type="button"><span class="fa fa-github"></span></button>
-  </div>
-  <input type="text" class="form-control" aria-label="" placeholder="XXXXXXXXXX" aria-describedby="basic-addon1">
+  <input type="text" class="form-control" aria-label="" id="description"  placeholder="description" aria-describedby="basic-addon1">
 </div>
 
       </div>

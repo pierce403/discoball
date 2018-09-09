@@ -297,10 +297,18 @@ discoBall.discoData(function (err, result) {
   console.log("discoData is "+discoData)
   discoData.count(function (err, result){
     console.log("count is "+result);
-    var count = result;
+    let count = result;
     for(let x=0;x<count;++x)
     {
-            // FIXME --v
+	    let row=discoData.insertRow(-1);
+	    row.insertCell().innerText=x;
+	    row.insertCell().innerText="";
+	    row.insertCell().innerText="";
+	    row.insertCell().innerText="";
+    }
+	  
+    for(let x=0;x<count;++x)
+    {
 	    discoData.hashes(x,function(err,res){
 		    console.log(x+": "+res);
 		    if(res=="")return;

@@ -289,6 +289,8 @@ var discoBall = DiscoBall.at(address);
 var discoData;
 console.log("discoBall is "+discoBall);
 
+discoTable = document.getElementById("discoTable");
+
 discoBall.discoData(function (err, result) {
   console.log(err, result);
   discoData = DiscoData.at(result);
@@ -301,10 +303,21 @@ discoBall.discoData(function (err, result) {
             // FIXME --v
 	    discoData.hashes(x,function(err,res){
 		    console.log(x+": "+res);
+		    if(res=="")return;
+		    discoTable.rows[x].cells[1].innerText=res;
 	    });
-			     
 	    
-	    //console.log(discoData.descriptions(x));
+	    discoData.descriptions(x,function(err,res){
+		    console.log(x+": "+res);
+		    if(res=="")return;
+		    discoTable.rows[x].cells[2].innerText=res;
+	    });
+	    
+	    discoData.publishers(x,function(err,res){
+		    console.log(x+": "+res);
+		    if(res=="")return;
+		    discoTable.rows[x].cells[3].innerText=res;
+	    });	    
     }
   });
 });

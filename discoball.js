@@ -291,7 +291,7 @@ console.log("discoBall is "+discoBall);
 
 discoBall.discoData(function (err, result) {
   console.log(err, result);
-  discoData = DiscoData.at(address);
+  discoData = DiscoData.at(result);
   console.log("discoData is "+discoData)
   discoData.count(function (err, result){
     console.log("count is "+result);

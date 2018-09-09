@@ -299,8 +299,12 @@ discoBall.discoData(function (err, result) {
     for(var x=0;x<count;++x)
     {
 	    console.log(x)
-	    console.log(discoData.hashes(x));
-	    console.log(discoData.descriptions(x));
+	    discoData.hashes(x,function(err,res){
+		    console.log(res);
+	    }
+			     
+	    
+	    //console.log(discoData.descriptions(x));
     }
   });
 });

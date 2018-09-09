@@ -296,7 +296,7 @@ discoBall.discoData(function (err, result) {
   discoData.count(function (err, result){
     console.log("count is "+result);
     var count = result;
-    for(var x=0;x<count;++x)
+    for(let x=0;x<count;++x)
     {
             // FIXME --v
 	    discoData.hashes(x,function(err,res){

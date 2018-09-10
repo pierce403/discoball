@@ -330,53 +330,13 @@ discoBall.discoData(function (err, result) {
   });
 });
 
-function search() {
-  console.log("search.. " + $("#search").val());
-  $("#name").text($("#search").val());
+function insert() {
+  console.log("insert called!")
 
-  var result = cryptoMe.get($("#search").val(), function(err, res) {
-    if (err) {
-      console.log(err);
-      return;
-    }
+  let ipfshash = $("#ipfshash").val();
+  let description = $("#description").val();
 
-    console.log("BOOM")
-    console.log(res);
-
-    if (res[0] === "") {
-      $("#name").text($("#search").val() + " (user not found)");
-    } else {
-      $("#name").text($("#search").val());
-      location.hash = $("#search").val();
-    }
-    $("#addr").text(res[1]);
-    $("#email").text(res[2]);
-    $("#ipfs").text(res[3]);
-  });
-  //console.log(result);
-}
-
-function register() {
-  console.log("called!")
-
-  var name = $("#newname").val();
-
-  var result = cryptoMe.register(name, function(err, res) {
-    console.log(res);
-  });
-
-  console.log("register result:");
-  console.log(result);
-  $('#reg-modal').modal('hide');
-}
-
-function update() {
-  console.log("called!")
-
-  var email = $("#updatedemail").val();
-  var ipfs = $("#updatedipfs").val();
-
-  var result = cryptoMe.update(email, ipfs, function(err, res) {
+  var result = discoBall.insert(ipfshash, description, function(err, res) {
     console.log(res);
   });
 

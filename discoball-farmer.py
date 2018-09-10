@@ -106,7 +106,7 @@ import requests
 def pin_stuff(hash):
 	#http://127.0.0.1:5001/api/v0/ls/QmSV87hzPYKxo8Go7A2JCsfCVXPqV8poovGk9tFrVJmdNr
     try:
-      lscheck = requests.get('http://127.0.0.1:5001/api/v0/pin/add/'+hash,timeout=10)
+      lscheck = requests.get('http://127.0.0.1:5001/api/v0/pin/add/'+hash,timeout=120) # if you can't do it in 2mins, it's probabally something dumb
       print("pinned "+hash)
     except:
       print("failed to pin "+hash)

@@ -1,154 +1,166 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>discoball.io</title>
-
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    
-<link rel='stylesheet' href='//cdn.jsdelivr.net/font-hack/2.020/css/hack.min.css'>
-<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-<link rel="stylesheet" href="css/bootstrap4-neon-glow.css">
-
-  </head>
-  <body>
-    
-<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-    data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false"
-    aria-label="Toggle navigation" style="">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" href="/">discoball.io</a>
-
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-    <ul class="navbar-nav mr-auto mt-2 mt-md-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="#!">Home
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target=".bd-update-modal-lg" href="#!">Submit</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target=".bd-about-modal-lg" href="#!">About</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0" _lpchecked="1">
-      <input id="search" class="form-control mr-sm-2 border-secondary" type="text" placeholder="search" oninput="window.search();">
-    </form>
-  </div>
-</nav>
-  
-  <div class="container">
-    <div class="py-5">
-      <h1>discoball.io</h1>
-      <p>
-        IPFS is Cool<br>
-        <span id="netwarn"></span>
-        <noscript><br><br><b>Sorry, you're going to need javascript for this.</b></noscript>
-      </p>
-      
-      <p id="msg"></p>
-      
-<table id="discoTable" class="table table-hover table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th>#</th>
-      <th>IPFS Hash</th>
-      <th>Description</th>
-      <th>Publisher</th>
-    </tr>
-  </thead>
-  </tbody>
-</table>
-
-      <br><br>
-
-      <button class="btn btn-outline-secondary" data-toggle="modal" data-target=".bd-update-modal-lg">New Hash</button>
-      
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🪩 Discoball - Decentralized Website Mirroring</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+            padding: 2rem 1rem;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 3rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+        
+        .goal {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .goal h3 {
+            margin-bottom: 0.5rem;
+            color: #007bff;
+        }
+        
+        .goal p {
+            margin-bottom: 0;
+        }
+        
+        .how-it-works {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .step-number {
+            background: #007bff;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+            color: #666;
+        }
+        
+        .github-link {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .github-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🪩 Discoball</h1>
+        <p class="subtitle">Decentralized website mirroring for the open web</p>
+        
+        <div class="goal">
+            <h3>🎯 The Problem</h3>
+            <p>Websites face increasing traffic and scraping pressures from AI companies, leading to higher costs and potential service disruptions.</p>
+        </div>
+        
+        <div class="goal">
+            <h3>💡 The Solution</h3>
+            <p>Community-driven, verified mirrors that reduce load on original sites while ensuring content remains accessible and authentic.</p>
+        </div>
+        
+        <div class="goal">
+            <h3>🔐 Trust & Verification</h3>
+            <p>Domain owners authorize mirrors through DNS records. Snapshots are stored on IPFS and verified on-chain for transparency.</p>
+        </div>
+        
+        <div class="how-it-works">
+            <h2>How It Works</h2>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <strong>Domain owners</strong> add a DNS TXT record with their Ethereum address to authorize mirroring
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <strong>Mirror providers</strong> capture website snapshots and upload them to IPFS
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <strong>Smart contracts</strong> record snapshot metadata on-chain for verification and transparency
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div>
+                    <strong>Users</strong> access verified mirrors, reducing load on original sites
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Open source project welcoming contributions from developers and decentralization enthusiasts</p>
+            <p>Let's reflect the future, one mirror at a time! ✨</p>
+        </div>
     </div>
-  </div>
-
-
-<!-- registration modal -->
-<div class="modal fade bd-reg-modal-lg" id="reg-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLiveLabel">Register New Identity</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-<div class="input-group">
-  <div class="input-group-prepend">
-    <button class="btn btn-outline-secondary" type="button"><span class="fa fa-user-circle"></span></button>
-  </div>
-  <input type="text" class="form-control border-secondary" id="newname" placeholder="username">
-</div>
-
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-outline-secondary" data-dismiss="modal">close</button>
-        <button class="btn btn-outline-secondary" onclick="register()">register</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- update modal -->
-<div class="modal fade bd-update-modal-lg" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLiveLabel">New File</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-<div class="input-group">
-  <div class="input-group-prepend">
-    <button class="btn btn-outline-secondary" type="button"><span class="fa fa-cube"></span></button>
-  </div>
-  <input type="text" class="form-control" aria-label="" id="ipfshash" placeholder="IPFS hash" aria-describedby="basic-addon1">
-</div>
-
-<div class="input-group">
-  <div class="input-group-prepend">
-    <button class="btn btn-outline-secondary" type="button"><span class="fa fa-twitter"></span></button>
-  </div>
-  <input type="text" class="form-control" aria-label="" id="description"  placeholder="description" aria-describedby="basic-addon1">
-</div>
-
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-outline-secondary" data-dismiss="modal">close</button>
-        <button class="btn btn-outline-secondary" onclick="insert()">submit</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-    <!-- requires jquery -->
-    <script src="discoball.js"></script>
-
-
-  </body>
+</body>
 </html>

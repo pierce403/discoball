@@ -1,61 +1,66 @@
-# 🪩 Discoball
+## Foundry
 
-**Discoball** is an open-source, decentralized mirroring solution designed to help websites facing traffic and scraping pressures from AI companies. It enables communities to host verified, trusted mirrors of content, reducing costs for original content providers and ensuring the availability and resilience of web resources.
+**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
 
-## 🌟 Core Concept
+Foundry consists of:
 
-Discoball allows any domain owner to explicitly authorize community-driven mirrors through simple DNS TXT records. Snapshots of website URLs are securely stored on IPFS, linked to the domain, path, publisher public key, and timestamp on-chain via smart contracts.
+-   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
+-   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
+-   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
+-   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
 
-The playful "Discoball" name evokes the concept of multiple mirrors reflecting the original content, maintaining authenticity and reliability.
+## Documentation
 
-## 🔑 Key Features
+https://book.getfoundry.sh/
 
-- **DNS-Based Verification**: Domain owners explicitly authorize mirrors by setting a TXT record containing a public Ethereum-compatible address.
-- **Decentralized & Transparent**: Snapshots and metadata are decentralized via IPFS and recorded on-chain.
-- **Historical Snapshots**: Maintains a record of historical snapshots with no guarantee of permanent IPFS storage, encouraging community-driven data persistence.
-- **Flexible & Extensible**: Designed without immediate token incentives but with flexibility for future enhancements like token rewards.
+## Usage
 
-## 🛠️ How It Works
+### Build
 
-### For Domain Owners:
-
-1. Generate an Ethereum-compatible key pair.
-2. Publish the public key in your DNS as a TXT record:
-
-```
-discoball-site-verification=0xYourPublicEthereumAddress
+```shell
+$ forge build
 ```
 
-### For Mirror Providers:
+### Test
 
-1. Capture and upload website snapshots to IPFS.
-2. Submit the snapshot metadata (domain, URL path, IPFS hash, timestamp, publisher signature) to the Discoball smart contract on Base.
+```shell
+$ forge test
+```
 
-### Verification & Usage:
+### Format
 
-- Users verify mirrors against the publisher’s DNS TXT record.
-- Verified snapshots provide higher trust and reliability.
+```shell
+$ forge fmt
+```
 
-## 🚨 Considerations
+### Gas Snapshots
 
-- No permanent storage guarantee for IPFS snapshots—communities are encouraged to pin and maintain their own persistent copies.
-- DNS spoofing or misconfigurations may temporarily affect verification; DNSSEC is recommended for stronger security.
+```shell
+$ forge snapshot
+```
 
-## 🌐 Frontend & Community
+### Anvil
 
-A user-friendly frontend will make it easy for anyone to mirror content, check snapshot authenticity, and visualize domain "discoball maturity" scores.
+```shell
+$ anvil
+```
 
-## 📈 Roadmap
+### Deploy
 
-- **Initial Launch**: Core decentralized verification and snapshot submission system.
-- **Future Enhancements**:
-  - zkTLS integration for trustless verification.
-  - Community reputation scoring.
-  - Optional token-based incentive models.
+```shell
+$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+```
 
-## 🙌 Join Us
+### Cast
 
-Discoball is an open project welcoming contributions from developers, content creators, and decentralization enthusiasts. Together, we can strengthen the open web.
+```shell
+$ cast <subcommand>
+```
 
-Let's reflect the future, one mirror at a time! 🪩✨
+### Help
 
+```shell
+$ forge --help
+$ anvil --help
+$ cast --help
+```

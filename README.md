@@ -1,66 +1,92 @@
-## Foundry
+# 🪩 Discoball
+IPFS mirror bribery
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+## Architecture
 
-Foundry consists of:
+A decentralized system for website mirroring that reduces server load and ensures content accessibility through community-driven IPFS mirrors.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+**Core Components:**
+- **Smart Contracts**: On-chain registry for verified mirrors
+- **Mirror Providers**: Community members who capture and host website snapshots
+- **IPFS Storage**: Decentralized content storage
+- **DNS Authorization**: Domain owners authorize mirroring via DNS records
 
-## Documentation
+## Smart Contracts
 
-https://book.getfoundry.sh/
+The DiscoBall registry is built on Ethereum-compatible chains (deployed on Base) and provides:
 
-## Usage
+- **Decentralized Registry**: Anyone can publish domain/path/IPFS mirror triples
+- **Efficient Querying**: Fast lookups by domain, publisher, path, or combinations
+- **Historical Records**: Complete audit trail of all mirror publications
+- **Gas Optimized**: Pagination and efficient data structures
 
-### Build
+### Quick Start
 
-```shell
-$ forge build
+```solidity
+import "./src/DiscoBallRegistry.sol";
+
+DiscoBallRegistry registry = DiscoBallRegistry(0x...);
+
+// Publish a mirror
+registry.publishMirror("example.com", "/page", "QmYourIPFSHash");
+
+// Get latest mirror for a domain
+DiscoBallRegistry.MirrorEntry memory latest = registry.getLatestByDomain("example.com");
 ```
 
-### Test
+### Development
 
-```shell
-$ forge test
+```bash
+# Install Foundry
+curl -L https://foundry.paradigm.xyz | bash
+foundryup
+
+# Install dependencies
+forge install
+
+# Run tests
+forge test
+
+# Deploy to testnet
+forge script script/Deploy.s.sol --rpc-url base_sepolia --broadcast
 ```
 
-### Format
+See [CONTRACTS.md](./CONTRACTS.md) for complete documentation.
 
-```shell
-$ forge fmt
+## For Ethereum Developers
+
+```solidity
+import "./discoball.sol";
+
+discoball = DiscoBall("0xPOTATO");
+discoball.insert(string ipfshash, string description);
 ```
 
-### Gas Snapshots
+## For Node Runners (maybe not in v1?)
 
-```shell
-$ forge snapshot
+(run on server running IPFS node)
+
+```bash
+./discoball-node.py
 ```
 
-### Anvil
+will generate a private key (if not already generated)
+will deploy a node contract (if not already deployed)
 
-```shell
-$ anvil
+## For Data Farmers
+
+(run on server running IPFS node)
+
+```bash
+./discoball-farmer.py
 ```
 
-### Deploy
+will query nodes looking for IPFS data to pin
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+## Contributing
 
-### Cast
+This is an open source project welcoming contributions from developers and decentralization enthusiasts. Visit our [GitHub repository](https://github.com/pierce403/discoball) to get involved!
 
-```shell
-$ cast <subcommand>
-```
+## License
 
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+MIT License - see [LICENSE](./LICENSE) for details.

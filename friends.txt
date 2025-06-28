@@ -1,0 +1,9 @@
+# DiscoBall Friends List
+# Add one Ethereum address per line
+# Lines starting with # are comments
+
+# Example addresses (replace with real friends):
+# 0x1234567890123456789012345678901234567890
+# 0xabcdefabcdefabcdefabcdefabcdefabcdefabcdef
+
+# Add your trusted publishers here: 

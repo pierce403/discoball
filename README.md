@@ -91,6 +91,102 @@ forge script script/Deploy.s.sol --rpc-url base --broadcast --verify
 
 See [CONTRACTS.md](./CONTRACTS.md) for complete smart contract documentation and API reference.
 
+## 🐍 Python Tools
+
+DiscoBall includes Python scripts to help with mirroring and content preservation:
+
+### disco-dance.py - Mirror Your Own Site
+
+The `disco-dance.py` script helps domain owners mirror their own websites:
+
+**Features:**
+- ✅ Verifies DNS TXT record authorization
+- 🕷️ Crawls and captures website content
+- 📦 Uploads snapshots to IPFS
+- 📡 Publishes to DiscoBall smart contract
+
+**Prerequisites:**
+```bash
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Set up DNS TXT record for your domain:
+# discoball-site-verification=0xYourEthereumAddress
+
+# Run local IPFS node (or use remote API)
+ipfs daemon
+```
+
+**Usage:**
+```bash
+# Mirror your site
+python disco-dance.py \
+  --domain yourdomain.com \
+  --path /page-to-mirror \
+  --private-key YOUR_PRIVATE_KEY
+
+# Use different networks/IPFS endpoints
+python disco-dance.py \
+  --domain yourdomain.com \
+  --path / \
+  --private-key YOUR_KEY \
+  --rpc-url https://sepolia.base.org \
+  --ipfs-api /ip4/127.0.0.1/tcp/5001
+```
+
+### disco-party.py - Pin Friends' Content
+
+The `disco-party.py` script helps maintain the decentralized web by pinning your friends' mirrors:
+
+**Features:**
+- 👥 Reads trusted publisher addresses from `friends.txt`
+- 🔍 Queries smart contract for their published mirrors
+- 📌 Pins all their IPFS content locally
+- 📊 Shows statistics about pinned content
+
+**Setup:**
+```bash
+# Create friends list
+python disco-party.py --create-sample
+
+# Edit friends.txt to add trusted publisher addresses
+nano friends.txt
+```
+
+**Usage:**
+```bash
+# Pin all your friends' content
+python disco-party.py
+
+# Use custom friends file
+python disco-party.py --friends-file my-trusted-publishers.txt
+
+# Show IPFS statistics
+python disco-party.py --stats
+```
+
+**Friends File Format:**
+```
+# DiscoBall Friends List
+0x1234567890123456789012345678901234567890
+0xabcdefabcdefabcdefabcdefabcdefabcdefabcdef
+# Comments start with #
+```
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/pierce403/discoball.git
+cd discoball
+
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Update contract addresses in the scripts
+# Edit CONTRACT_ADDRESS in disco-dance.py and disco-party.py
+```
+
 ## 🚨 Considerations
 
 - No permanent storage guarantee for IPFS snapshots—communities are encouraged to pin and maintain their own persistent copies.

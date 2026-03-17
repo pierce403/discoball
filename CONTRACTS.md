@@ -108,17 +108,23 @@ forge test -v
 
 #### Base Sepolia (Testnet)
 ```bash
-forge script script/Deploy.s.sol --rpc-url base_sepolia --broadcast --verify
+./script/deploy-and-verify.sh base_sepolia
 ```
 
 #### Base Mainnet
 ```bash
-forge script script/Deploy.s.sol --rpc-url base --broadcast --verify
+./script/deploy-and-verify.sh base
 ```
 
 **Environment Variables Required:**
-- `PRIVATE_KEY`: Deployer private key
-- `BASESCAN_API_KEY`: For contract verification
+- `BASESCAN_API_KEY` (required): For contract verification. Generate at:
+  - `https://basescan.org/myapikey` (Base mainnet)
+  - `https://sepolia.basescan.org/myapikey` (Base Sepolia)
+- `PRIVATE_KEY` (optional): If omitted, the script auto-generates and stores a deployer key in `.secrets/`
+- `REFUND_ADDRESS` (optional): Override refund destination. If omitted with generated key, refund goes to the detected funding source, or falls back to `deanpierce.eth`.
+- `LOG_FILE` (optional): Deployment log file path (defaults to `deploy.log`)
+
+The deploy script defaults to `base` network when no argument is passed, waits for funding if needed, deploys + verifies, and then attempts to return leftover gas funds.
 
 ## Architecture Decisions
 

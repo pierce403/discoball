@@ -44,13 +44,14 @@ The DiscoBall registry is deployed on Base and provides a decentralized registry
 - **Efficient Querying**: Fast lookups by domain, publisher, path, or combinations
 - **Historical Records**: Complete audit trail of all mirror publications
 - **Gas Optimized**: Pagination and efficient data structures
+- **Base Mainnet Address**: `0x3fB28659757a6edb6c53eFE1F84896F8Eaf6d5f7`
 
 ### Quick Start
 
 ```solidity
 import "./src/DiscoBallRegistry.sol";
 
-DiscoBallRegistry registry = DiscoBallRegistry(0x...);
+DiscoBallRegistry registry = DiscoBallRegistry(0x3fB28659757a6edb6c53eFE1F84896F8Eaf6d5f7);
 
 // Publish a mirror
 registry.publishMirror("example.com", "/page", "QmYourIPFSHash");
@@ -78,16 +79,22 @@ forge test
 # Run tests with gas reporting
 forge test --gas-report
 
-# Deploy to Base Sepolia testnet
-forge script script/Deploy.s.sol --rpc-url base_sepolia --broadcast --verify
+# Deploy + verify on Base Sepolia testnet
+./script/deploy-and-verify.sh base_sepolia
 
-# Deploy to Base mainnet
-forge script script/Deploy.s.sol --rpc-url base --broadcast --verify
+# Deploy + verify on Base mainnet
+./script/deploy-and-verify.sh base
 ```
 
 **Environment Variables for Deployment:**
-- `PRIVATE_KEY`: Deployer private key
-- `BASESCAN_API_KEY`: For contract verification
+- `BASESCAN_API_KEY` (required): For contract verification. Generate at:
+  - `https://basescan.org/myapikey` (Base mainnet)
+  - `https://sepolia.basescan.org/myapikey` (Base Sepolia)
+- `PRIVATE_KEY` (optional): If omitted, the script auto-generates and stores a deployer key in `.secrets/`
+- `REFUND_ADDRESS` (optional): Override refund destination. If omitted with generated key, refund goes to the detected funding source, or falls back to `deanpierce.eth`.
+- `LOG_FILE` (optional): Deployment log file path (defaults to `deploy.log`)
+
+The deploy script defaults to `base` network when no argument is passed, waits for funding if needed, deploys + verifies, and then attempts to return leftover gas funds.
 
 See [CONTRACTS.md](./CONTRACTS.md) for complete smart contract documentation and API reference.
 
@@ -101,8 +108,9 @@ The `disco-dance.py` script helps domain owners mirror their own websites:
 
 **Features:**
 - ✅ Verifies DNS TXT record authorization
-- 🕷️ Crawls and captures website content
-- 📦 Uploads snapshots to IPFS
+- 🕷️ Crawls HTML and localizes referenced assets (images, CSS, JS, media)
+- 📦 Uploads a browsable snapshot bundle to IPFS (`index.html` + assets)
+- 🔒 Blocks unresolved external resource URLs and injects CSP for offline-safe rendering
 - 📡 Publishes to DiscoBall smart contract
 
 **Prerequisites:**
@@ -117,22 +125,36 @@ pip install -r requirements.txt
 ipfs daemon
 ```
 
+To keep IPFS running persistently with systemd user services:
+```bash
+# Install and start user service (uses Kubo from PATH or IPFS Desktop bundle)
+./script/setup-ipfs-kubo-service.sh
+
+# Check status
+systemctl --user status ipfs-kubo.service
+```
+
 **Usage:**
 ```bash
 # Mirror your site
 python disco-dance.py \
-  --domain yourdomain.com \
-  --path /page-to-mirror \
-  --private-key YOUR_PRIVATE_KEY
+  https://yourdomain.com/page-to-mirror
 
 # Use different networks/IPFS endpoints
 python disco-dance.py \
-  --domain yourdomain.com \
-  --path / \
-  --private-key YOUR_KEY \
+  https://yourdomain.com/ \
   --rpc-url https://sepolia.base.org \
   --ipfs-api /ip4/127.0.0.1/tcp/5001
+
+# Optional crawl pacing knobs (to reduce rate limiting from strict hosts)
+# export DISCOBALL_WIKIMEDIA_MIN_INTERVAL=0.5
+# export DISCOBALL_RATE_LIMIT_COOLDOWN=180
 ```
+
+By default, `disco-dance.py` resolves the signer key in this order:
+1. `--private-key`
+2. `PRIVATE_KEY` environment variable
+3. `.secrets/deployer-base.key` (from the deploy script flow)
 
 ### disco-party.py - Pin Friends' Content
 
@@ -183,8 +205,10 @@ cd discoball
 # Install Python dependencies
 pip install -r requirements.txt
 
-# Update contract addresses in the scripts
-# Edit CONTRACT_ADDRESS in disco-dance.py and disco-party.py
+# Update contract addresses in the scripts as needed
+# disco-dance.py is preconfigured for Base mainnet:
+# 0x3fB28659757a6edb6c53eFE1F84896F8Eaf6d5f7
+# disco-party.py still needs CONTRACT_ADDRESS set manually
 ```
 
 ## 🚨 Considerations

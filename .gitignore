@@ -12,3 +12,11 @@ docs/
 
 # Dotenv file
 .env
+.env.*
+!.env.example
+
+# Generated deployment secrets
+.secrets/
+
+# Deployment logs
+deploy.log

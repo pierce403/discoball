@@ -233,3 +233,11 @@ A user-friendly frontend will make it easy for anyone to mirror content, check s
 Discoball is an open project welcoming contributions from developers, content creators, and decentralization enthusiasts. Visit our [GitHub repository](https://github.com/pierce403/discoball) to get involved!
 
 Let's reflect the future, one mirror at a time! 🪩✨
+
+## Cloudflare publishing
+
+Native Cloudflare Git builds publish `master`. Validate with `npm ci` and
+`npm run check:deploy`; build uses `npm run build`, deployment `npm run deploy`.
+Only the reviewed public file list is copied to `dist`; original public content
+and GitHub Pages recovery remain. Credentials stay in Cloudflare and previews
+are disabled. The revision is at `/.well-known/cloudflare-build.json`.

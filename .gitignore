@@ -20,3 +20,7 @@ docs/
 
 # Deployment logs
 deploy.log
+
+node_modules/
+dist/
+.wrangler/

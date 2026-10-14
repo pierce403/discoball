@@ -72,3 +72,10 @@ This file documents how coding agents should work in this repository.
 ## Communication
 - Be explicit about what changed, what was validated, and any known caveats.
 - If a requested action cannot be completed (e.g., push auth failure), state it clearly and provide the exact next command.
+
+## Static hosting, October 2026
+
+Native Cloudflare Git builds publish only the reviewed public assets via npm ci
+and npm run check:deploy. Deployment credentials remain in Cloudflare; previews
+are off. Local runtimes, wallets and publishing tools are not deployed. Original
+Pages/source history is retained for recovery.
